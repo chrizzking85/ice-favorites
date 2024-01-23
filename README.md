@@ -3,8 +3,8 @@
 ## Frontend
 
 ```
-cd favorites-react-app2
+docker-compose up --build 
 ```
 ```
-start.sh
+localhost:3000/songs
 ```
