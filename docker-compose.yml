@@ -1,0 +1,32 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:14.2
+    container_name: 'postgres-container'
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: testdb
+      
+  spring-boot-app:
+      build:
+        context: ./favorite-songs
+        dockerfile: Dockerfile
+      container_name: 'tech-mbti-container'  
+      ports:
+        - "8080:8080"
+      depends_on:
+        - postgres
+      environment:
+        SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/testdb
+        SPRING_DATASOURCE_USERNAME: user
+        SPRING_DATASOURCE_PASSWORD: password
+
+  react-app:
+      build:
+        context: ./favorites-react-app2
+        dockerfile: Dockerfile
+      ports:
+        - "3000:3000"

@@ -1,23 +1,15 @@
 spring:
   datasource:
-#    driver-class-name: "org.h2.Driver"
-#    url: "jdbc:h2:mem:dev_db"
-#    username: "sa"
-#    password: "sa"
     driver-class-name: "org.postgresql.Driver"
-    url: jdbc:postgresql://localhost:5432/testdb
-    username: user
-    password: password
+    url: ${SPRING_DATASOURCE_URL} #jdbc:postgresql://localhost:5432/testdb
+    username: ${SPRING_DATASOURCE_USERNAME} #user
+    password: ${SPRING_DATASOURCE_PASSWORD} #password
   jpa:
     database: POSTGRESQL
     hibernate:
-      ddl-auto: update
+      ddl-auto: update #create-drop
     show-sql: true
     generate-ddl: false
-    properties:
-      hibernate:
-        # dialect: org.hibernate.dialect.H2Dialect
-        dialect: org.hibernate.dialect.PostgreSQLDialect
     defer-datasource-initialization: true
   sql:
     init:
